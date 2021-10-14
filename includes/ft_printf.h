@@ -6,7 +6,7 @@
 /*   By: wlanette <wlanette@student.21-school.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 19:20:39 by wlanette          #+#    #+#             */
-/*   Updated: 2021/10/14 20:53:13 by wlanette         ###   ########.fr       */
+/*   Updated: 2021/10/14 21:40:38 by wlanette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 
 typedef struct s_flags
 {
-	int	hyphen;
-	int	plus;
-	int	space;
-	int	sharp;
-	int	zero;
-	int	dot;
-	int	width;
+	int		hyphen;
+	int		plus;
+	int		space;
+	int		sharp;
+	int		zero;
+	int		dot;
+	int		width;
+	char	type;
 }				t_flags;
 
 int		ft_type_is_valid(char c);

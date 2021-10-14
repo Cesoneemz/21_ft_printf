@@ -6,7 +6,7 @@
 /*   By: wlanette <wlanette@student.21-school.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 17:48:12 by wlanette          #+#    #+#             */
-/*   Updated: 2021/10/14 20:54:48 by wlanette         ###   ########.fr       */
+/*   Updated: 2021/10/14 21:40:25 by wlanette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,34 @@ t_flags	ft_init_flags(void)
 	flags.zero = 0;
 	flags.dot = 0;
 	flags.width = 0;
+	flags.type = ' ';
 	return (flags);
+}
+
+int	ft_parse_flags(const char *input, t_flags *flags, va_list argptr)
+{
+	size_t	index;
+
+	index = 0;
+	while (input[index] != '\0')
+	{
+		if (input[index] == '0' && flags->width == 0 && flags->hyphen == 0)
+			flags->zero = 0;
+		if (input[index] == '-')
+		if (input[index] == '+')
+		if (input[index] == ' ')
+		if (input[index] == '#')
+		if (input[index] == '.')
+		if (input[index] == '*')
+		if (ft_isdigit(input[index]))
+		if (ft_type_if_valid(input[index]))
+		{
+			flags->type = input[index];
+			break ;
+		}
+		index++;
+	}
+	return (index);
 }
 
 int	ft_printf_parse(const char *input, va_list argptr)
@@ -46,7 +73,7 @@ int	ft_printf_parse(const char *input, va_list argptr)
 		if (input[index] == '%' && input[index + 1])
 		{
 			if (ft_type_is_valid(input[index + 1]))
-				counter += ft_printf_split_by_args(input[index + 1], argptr);
+				counter += ft_printf_split_by_args(input[index + 1], argptr);	
 			else if (input[index])
 				counter += ft_putchar(input[index]);
 		}
