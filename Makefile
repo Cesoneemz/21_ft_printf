@@ -10,8 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS 	 = 	./srcs/*.c	
-OBJS 	 = 	$(patsubst %c,%.o,$(SRCS))
+SRCS 	 = 	./srcs/ft_printf.c ./srcs/ft_utils.c ./srcs/ft_validators.c \
+			./srcs/ft_char_treatment.c ./srcs/ft_get_width.c ./srcs/ft_string_treatment.c \
+			./srcs/ft_flags_treatment.c
+OBJS 	 = 	$(patsubst %.c,%.o,$(SRCS))
 D_FILES  = 	$(patsubst %.c,%.d,$(SRCS))
 
 NAME 	 =	libftprintf.a
@@ -19,11 +21,13 @@ LIBC 	 =	ar rcs
 RM   	 =	rm -rf
 
 CC		 = 	clang
-CFLAGS   =	-Wall -Wextra -Weror
+CFLAGS   =	-Wall -Wextra -Werror
 OPTFLAGS = 	-O2
 
 
 $(NAME):	$(OBJS)
+			$(MAKE) bonus -C ./libft
+			cp libft/libft.a $(NAME)
 			$(LIBC) $(NAME) $(OBJS)
 
 all:		$(NAME)
@@ -42,6 +46,6 @@ fclean:		clean
 re:			fclean all
 
 build:
-			$(CC) $(OPTFLAGS) $(SRCS) ./libft/*.c -I ./includes -o $(NAME) 
+			$(CC) -g $(OPTFLAGS) $(SRCS) ./libft/*.c -I ./includes -o $(NAME)
 
 .PHONY:		all clean fclean re build $(NAME)

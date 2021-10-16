@@ -21,21 +21,23 @@ int	ft_putchar(char c)
 	return (1);
 }
 
-int	ft_printf_split_by_args(char c, va_list argptr)
+int	ft_printf_split_by_args(char c, t_flags flags, va_list argptr)
 {
 	int	counter;
 
 	counter = 0;
 	if (c == 'c')
-		counter += ft_putchar(c);
+		counter += ft_char_treatment(va_arg(argptr, int), flags);
+	else if (c == 's')
+		counter += ft_string_treatment(va_arg(argptr, char *), flags);
 	return (counter);
 }
 
-int	ft_dot_treatment(const char *input, size_t start, t_flags *flags, va_list argptr)
+int	ft_dot_treatment(const char *input, int i, t_flags *flags, va_list argptr)
 {
 	size_t	index;
 
-	index = start + 1;
+	index = i + 1;
 	if (input[index] == '*')
 	{
 		flags->dot = va_arg(argptr, int);
@@ -43,8 +45,12 @@ int	ft_dot_treatment(const char *input, size_t start, t_flags *flags, va_list ar
 	}
 	else
 	{
+		flags->dot = 0;
 		while (ft_isdigit(input[index]))
-				flags->dot = (flags->dot * 10) + (input[index++] - '0');
+		{
+			flags->dot = (flags->dot * 10) + (input[index] - '0');
+			index++;
+		}
 	}
-	return (index);
+	return ((int)index);
 }

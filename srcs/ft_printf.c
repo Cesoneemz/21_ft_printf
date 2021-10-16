@@ -10,11 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdarg.h>
-#include <unistd.h>
-
-#include <stdio.h>
 
 #include "../includes/ft_printf.h"
 
@@ -27,56 +23,41 @@ t_flags	ft_init_flags(void)
 	flags.space = 0;
 	flags.sharp = 0;
 	flags.zero = 0;
-	flags.dot = 0;
+	flags.dot = -1;
 	flags.star = 0;
 	flags.width = 0;
 	flags.type = ' ';
 	return (flags);
 }
 
-int	ft_parse_flags(const char *input, size_t index, t_flags *flags, va_list argptr)
+int	ft_parse_flags(const char *input, int i, t_flags *flags, va_list argptr)
 {
-	while (input[index] != '\0')
+	while (input[i] != '\0')
 	{
-		if (input[index] == '0' && flags->width == 0 && flags->hyphen == 0)
+		if (input[i] == '0' && flags->width == 0 && flags->hyphen == 0)
 			flags->zero = 1;
-		if (input[index] == '-')
-		{
-			flags->zero = 0;
-			flags->hyphen = 1;
-		}
-		if (input[index] == '+')
+		if (input[i] == '-')
+			*flags = ft_hyphen_treatment(flags);
+		if (input[i] == '+')
 			flags->plus = 1;
-		if (input[index] == ' ' && !flags->plus)
+		if (input[i] == ' ' && !flags->plus)
 			flags->space = 1;
-		if (input[index] == '#')
+		if (input[i] == '#')
 			flags->sharp = 1;
-		if (input[index] == '.')
-			flags->dot = ft_dot_treatment(input, index, flags, argptr);
-		if (input[index] == '*')
+		if (input[i] == '.')
+			i = ft_dot_treatment(input, i, flags, argptr);
+		if (input[i] == '*')
+			*flags = ft_star_treatment(flags, argptr);
+		if (ft_isdigit(input[i]))
+			*flags = ft_digit_treatment(input[i], flags);
+		if (ft_type_is_valid(input[i]))
 		{
-			flags->star = 1;
-			flags->width = va_arg(argptr, int);
-			if (flags->width < 0)
-			{
-				flags->hyphen = 1;
-				flags->width *= -1;
-			}
-		}
-		if (ft_isdigit(input[index]))
-		{
-			if (flags->star)
-				flags->width = 1;
-			flags->width = (flags->width * 10) + (input[index] - '0');
-		}
-		if (ft_type_is_valid(input[index]))
-		{
-			flags->type = input[index];
+			flags->type = input[i];
 			break ;
 		}
-		index++;
+		i++;
 	}
-	return (index);
+	return (i);
 }
 
 int	ft_printf_parse(const char *input, va_list argptr)
@@ -94,10 +75,12 @@ int	ft_printf_parse(const char *input, va_list argptr)
 		{
 			index = ft_parse_flags(input, ++index, &flags, argptr);
 			if (ft_type_is_valid(input[index]))
-				counter += ft_printf_split_by_args(input[index], argptr);	
+				counter += ft_printf_split_by_args(input[index], flags, argptr);
 			else if (input[index])
 				counter += ft_putchar(input[index]);
 		}
+		else if (input[index] != '%')
+			counter += ft_putchar(input[index]);
 		index++;
 	}
 	return (counter);
@@ -113,12 +96,4 @@ int	ft_printf(const char *input, ...)
 	counter += ft_printf_parse(input, argptr);
 	va_end(argptr);
 	return (counter);
-}
-
-int	main(void)
-{
-	char	c;
-
-	c = 'a';
-	ft_printf("%c%c\n", c, c);
 }
