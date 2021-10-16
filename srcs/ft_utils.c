@@ -30,3 +30,21 @@ int	ft_printf_split_by_args(char c, va_list argptr)
 		counter += ft_putchar(c);
 	return (counter);
 }
+
+int	ft_dot_treatment(const char *input, size_t start, t_flags *flags, va_list argptr)
+{
+	size_t	index;
+
+	index = start + 1;
+	if (input[index] == '*')
+	{
+		flags->dot = va_arg(argptr, int);
+		index++;
+	}
+	else
+	{
+		while (ft_isdigit(input[index]))
+				flags->dot = (flags->dot * 10) + (input[index++] - '0');
+	}
+	return (index);
+}

@@ -42,6 +42,6 @@ fclean:		clean
 re:			fclean all
 
 build:
-			$(CC) $(OPTFLAGS) $(SRCS) -I ./includes -o $(NAME) 
+			$(CC) $(OPTFLAGS) $(SRCS) ./libft/*.c -I ./includes -o $(NAME) 
 
 .PHONY:		all clean fclean re build $(NAME)

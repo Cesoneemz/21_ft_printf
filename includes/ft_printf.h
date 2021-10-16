@@ -24,6 +24,7 @@ typedef struct s_flags
 	int		sharp;
 	int		zero;
 	int		dot;
+	int		star;
 	int		width;
 	char	type;
 }				t_flags;
@@ -31,5 +32,6 @@ typedef struct s_flags
 int		ft_type_is_valid(char c);
 int		ft_putchar(char c);
 int		ft_printf_split_by_args(char c, va_list argptr);
+int		ft_dot_treatment(const char *input, size_t start, t_flags *flags, va_list argptr);
 
 #endif
