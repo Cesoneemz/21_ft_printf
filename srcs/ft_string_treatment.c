@@ -1,14 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_string_treatment.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wlanette <wlanette@student.21-school.ru>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/18 16:45:42 by wlanette          #+#    #+#             */
+/*   Updated: 2021/10/18 20:43:08 by                  ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
-
-int	ft_putstr(char *str, int prec)
-{
-	int	index;
-
-	index = 0;
-	while (str[index] && index < prec)
-		ft_putchar(str[index++]);
-	return (index);
-}
 
 static int	ft_put_int_part(char *str, t_flags flags)
 {

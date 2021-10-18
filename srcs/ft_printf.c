@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wlanette <wlanette@student.21-school.      +#+  +:+       +#+        */
+/*   By: wlanette <wlanette@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/14 17:48:12 by wlanette          #+#    #+#             */
-/*   Updated: 2021/10/14 21:40:25 by wlanette         ###   ########.fr       */
+/*   Created: 2021/10/18 16:45:42 by wlanette          #+#    #+#             */
+/*   Updated: 2021/10/18 20:43:08 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	ft_parse_flags(const char *input, int i, t_flags *flags, va_list argptr)
 			flags = ft_hyphen_treatment(flags);
 		if (input[i] == '+')
 			flags->plus = 1;
-		if (input[i] == ' ' && !flags->plus)
-			flags->space = 1;
 		if (input[i] == '#')
 			flags->sharp = 1;
 		if (input[i] == '.')

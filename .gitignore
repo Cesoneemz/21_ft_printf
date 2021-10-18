@@ -1,4 +1,5 @@
 *.DS_STORE
+*.dSYM
 
 *.o
 *.d
@@ -9,3 +10,4 @@
 *.swp
 
 .ccls-cache/
+.printfTester/
