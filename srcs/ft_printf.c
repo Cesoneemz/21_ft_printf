@@ -37,7 +37,7 @@ int	ft_parse_flags(const char *input, int i, t_flags *flags, va_list argptr)
 		if (input[i] == '0' && flags->width == 0 && flags->hyphen == 0)
 			flags->zero = 1;
 		if (input[i] == '-')
-			*flags = ft_hyphen_treatment(flags);
+			flags = ft_hyphen_treatment(flags);
 		if (input[i] == '+')
 			flags->plus = 1;
 		if (input[i] == ' ' && !flags->plus)
@@ -47,9 +47,9 @@ int	ft_parse_flags(const char *input, int i, t_flags *flags, va_list argptr)
 		if (input[i] == '.')
 			i = ft_dot_treatment(input, i, flags, argptr);
 		if (input[i] == '*')
-			*flags = ft_star_treatment(flags, argptr);
+			flags = ft_star_treatment(flags, argptr);
 		if (ft_isdigit(input[i]))
-			*flags = ft_digit_treatment(input[i], flags);
+			flags = ft_digit_treatment(input[i], flags);
 		if (ft_type_is_valid(input[i]))
 		{
 			flags->type = input[i];

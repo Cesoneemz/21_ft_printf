@@ -2,7 +2,7 @@
 
 int	ft_putstr(char *str, int prec)
 {
-	size_t	index;
+	int	index;
 
 	index = 0;
 	while (str[index] && index < prec)
