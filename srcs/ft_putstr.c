@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validators.c                                    :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wlanette <wlanette@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: wlanette <wlanette@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 16:45:18 by wlanette          #+#    #+#             */
-/*   Updated: 2021/10/18 20:54:18 by                  ###   ########.fr       */
+/*   Created: 2021/10/18 17:17:47 by wlanette          #+#    #+#             */
+/*   Updated: 2021/10/18 20:43:08 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ft_type_is_valid(char c)
+int	ft_putstr(char *str, int prec)
 {
-	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || \
-			c == 'u' || c == 'x' || c == 'X' || c == '%');
+	int	index;
+
+	index = 0;
+	while (str[index] && index < prec)
+		ft_putchar(str[index++]);
+	return (index);
 }
