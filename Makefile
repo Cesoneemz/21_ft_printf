@@ -11,8 +11,8 @@
 # **************************************************************************** #
 
 SRCS 	 = 	./srcs/ft_printf.c ./srcs/ft_utils.c ./srcs/ft_validators.c \
-			./srcs/ft_char_treatment.c ./srcs/ft_get_width.c ./srcs/ft_string_treatment.c \
-			./srcs/ft_flags_treatment.c ./srcs/ft_putstr.c ./srcs/ft_pointer_treatment.c \
+			./srcs/ft_char_treatment.c ./srcs/ft_string_treatment.c \
+			./srcs/ft_putstr.c ./srcs/ft_pointer_treatment.c \
 			./srcs/ft_integer_treatment.c ./srcs/ft_uint_treatment.c ./srcs/ft_uint_itoa.c \
 			./srcs/ft_convert_to_base.c ./srcs/ft_hex_treatment.c
 OBJS 	 = 	$(patsubst %.c,%.o,$(SRCS))
