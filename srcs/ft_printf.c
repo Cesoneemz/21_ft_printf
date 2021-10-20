@@ -25,10 +25,11 @@ int	ft_printf_parse(const char *input, va_list argptr)
 	{
 		if (input[index] == '%' && input[index])
 		{
-			if (ft_type_is_valid(input[index + 1]))
-				counter += ft_printf_split_by_args(input[index + 1], argptr);
-			else if (input[index + 1])
-				counter += ft_putchar(input[index + 1]);
+			index++;
+			if (ft_type_is_valid(input[index]))
+				counter += ft_printf_split_by_args(input[index], argptr);
+			else if (input[index])
+				counter += ft_putchar(input[index]);
 		}
 		else if (!ft_type_is_valid(input[index]))
 			counter += ft_putchar(input[index]);

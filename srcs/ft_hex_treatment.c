@@ -14,7 +14,6 @@
 
 #include "../includes/ft_printf.h"
 
-
 int	ft_hex_treatment(unsigned int nbr, char c)
 {
 	int				index;

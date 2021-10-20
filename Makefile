@@ -49,12 +49,4 @@ fclean:		clean
 
 re:			fclean all
 
-bonus:		$(OBJS)
-			$(MAKE) bonus -C ./libft
-			cp libft/libft.a $(NAME)
-			$(LIBC) $(NAME) $(OBJS)
-
-build:
-			$(CC) -g $(OPTFLAGS) $(SRCS) main.c ./libft/*.c -I ./includes -o $(NAME)
-
-.PHONY:		all clean fclean re build $(NAME)
+.PHONY:		all clean fclean re

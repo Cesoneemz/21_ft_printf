@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 
-
 int		ft_printf(const char *input, ...);
 int		ft_type_is_valid(char c);
 int		ft_putchar(char c);
