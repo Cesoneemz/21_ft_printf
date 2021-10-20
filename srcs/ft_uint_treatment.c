@@ -20,7 +20,6 @@ int	ft_uint_treatment(unsigned int nbr)
 	char			*buffer;
 
 	index = 0;
-	nbr = (unsigned int)(4294967295 + 1 + nbr);
 	buffer = ft_uint_itoa(nbr);
 	index += ft_putstr(buffer, ft_strlen(buffer));
 	free(buffer);
