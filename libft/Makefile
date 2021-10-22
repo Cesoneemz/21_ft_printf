@@ -38,7 +38,7 @@ CFLAGS		= -Wall -Wextra -Werror
 OPTFLAGS	= -O2
 
 $(NAME):	${OBJS}
-			${LIBC} ${NAME} ${OBJS}
+			${LIBC} ${NAME} $?
 
 all:		${NAME}
 
@@ -55,7 +55,8 @@ fclean:		clean
 
 re:			fclean all
 
-bonus:		${OBJS} ${OBJS_BONUS}
-			${LIBC} ${NAME} ${OBJS} ${OBJS_BONUS}
+bonus:
+			@make all
+			@make OBJS="$(OBJS_BONUS)" all
 
 .PHONY:		all clean fclean re bonus
